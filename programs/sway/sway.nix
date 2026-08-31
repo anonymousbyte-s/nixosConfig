@@ -6,7 +6,7 @@
     wrapperFeatures.gtk = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  /*environment.systemPackages = with pkgs; [
     waybar # top bar for wayland
     swayidle # idle managment daemon
     swaylock-effects # display locker
@@ -17,7 +17,7 @@
     impala # WiFi TUI
     bluetui # bluetooth TUI
     fuzzel # fuzzy search
-  ];
+  ];*/
 
   # file manager
   programs.thunar.enable = true;
