@@ -16,8 +16,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
-
   hardware.enableAllFirmware = true;
 
   # Use the systemd-boot EFI boot loader.
@@ -100,6 +98,7 @@
   };
 
   # programs.firefox.enable = true;
+  programs.steam.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
