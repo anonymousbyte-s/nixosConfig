@@ -14,6 +14,12 @@
       ../../programs/ssh.nix
     ];
 
+  # sym link the hardware sway config to the sway directory
+  environment.etc."programs/sway/sway-input.conf" = {
+    source = ./sway-input.conf;
+  };
+
+
   nixpkgs.config.allowUnfree = true;
 
   hardware.enableAllFirmware = true;
