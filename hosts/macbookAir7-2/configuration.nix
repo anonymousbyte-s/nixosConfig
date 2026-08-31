@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../programs/sway.nix
+      ../../programs/sway/sway.nix
       #../../programs/tuigreet.nix
       ../../programs/sysc-greet.nix
       ../../programs/ssh.nix
