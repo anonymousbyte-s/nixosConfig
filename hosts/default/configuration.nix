@@ -14,6 +14,11 @@
       ../../programs/ssh.nix
     ];
 
+  # sym link the hardware sway config to the sway directory
+  environment.etc."nixos/programs/sway/sway-input.conf" = {
+    source = ./sway-input.conf;
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
