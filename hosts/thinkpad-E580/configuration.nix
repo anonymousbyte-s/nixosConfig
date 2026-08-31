@@ -15,7 +15,7 @@
     ];
 
   # sym link the hardware sway config to the sway directory
-  environment.etc."programs/sway/sway-input.conf" = {
+  environment.etc."nixos/programs/sway/sway-input.conf" = {
     source = ./sway-input.conf;
   };
 
