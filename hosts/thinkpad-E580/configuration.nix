@@ -2,23 +2,27 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../programs/sway/sway.nix
-      #../../programs/tuigreet.nix
-      ../../programs/sysc-greet.nix
-      ../../programs/ssh.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../programs/sway/sway.nix
+    #../../programs/tuigreet.nix
+    ../../programs/sysc-greet.nix
+    ../../programs/ssh.nix
+  ];
 
   # sym link the hardware sway config to the sway directory
   environment.etc."nixos-managed/sway/sway-input.conf" = {
     source = ./sway-input.conf;
   };
-
 
   nixpkgs.config.allowUnfree = true;
 
@@ -31,10 +35,12 @@
   networking.hostName = "nixos"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
-  /*networking.networkmanager = {
-    enable = true;    
-    wifi.backend = "iwd";
-  };*/
+  /*
+    networking.networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
+  */
 
   networking.wireless.iwd.enable = true;
 
@@ -68,9 +74,10 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -95,12 +102,11 @@
     isNormalUser = true;
     home = "/home/tom";
     description = "Tom Koa Dinell";
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox # web browser
-      zed-editor # text editor
-      nil # nix language server
-    ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
+    packages = [ ];
   };
 
   # programs.firefox.enable = true;
@@ -109,12 +115,11 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
     fastfetch # system info
     btop # system monitor TUI
     home-manager # used to configure the home directory
     git # used to manage git repos
+    nil # nix language server
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -161,4 +166,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-
