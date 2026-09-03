@@ -17,6 +17,7 @@
     #../../programs/tuigreet.nix
     ../../programs/sysc-greet.nix
     ../../programs/ssh.nix
+    ../../programs/tlp.nix
   ];
 
   # sym link the hardware sway config to the sway directory
