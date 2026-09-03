@@ -13,7 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../programs/sway/sway.nix
+    ../../programs/sway.nix
     #../../programs/tuigreet.nix
     ../../programs/sysc-greet.nix
     ../../programs/ssh.nix
