@@ -116,7 +116,6 @@
     btop # system monitor TUI
     home-manager # used to configure the home directory
     git # used to manage git repos
-    nil # nix language server
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
