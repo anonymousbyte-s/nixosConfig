@@ -94,6 +94,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  # Make the plugdev group
+  users.groups.plugdev = {};
+
+  # Enable RLT-SDR support
+  hardware.rtl-sdr.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tom = {
     isNormalUser = true;
@@ -102,6 +108,7 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      #"plugdev"
     ]; # Enable ‘sudo’ for the user.
     packages = [ ];
   };
