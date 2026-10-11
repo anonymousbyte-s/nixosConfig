@@ -41,6 +41,37 @@
 
   networking.wireless.iwd.enable = true;
 
+  # enable network sharing over ethernet
+  networking.useNetworkd = true;
+
+  systemd.network = {
+    enable = true;
+
+    networks."30-ethernet-share" = {
+      matchConfig.Name = "enp3s0";
+
+      address = [ "10.42.0.1/24" ];
+
+      networkConfig = {
+        DHCPServer = true;
+        IPMasquerade = "ipv4";
+        IPv6AcceptRA = false;
+      };
+
+      dhcpServerConfig = {
+        PoolOffset = 10;
+        PoolSize = 50;
+        EmitDNS = true;
+        DNS = "1.1.1.1";
+      };
+    };
+  };
+
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
+  # allow for ethernet sharing on the firewall
+  networking.firewall.interfaces.enp3s0.allowedUDPPorts = [ 67 ];
+
   # Enable the bluetooth hardware
   hardware.bluetooth = {
     enable = true;
@@ -95,7 +126,7 @@
   # services.libinput.enable = true;
 
   # Make the plugdev group
-  users.groups.plugdev = {};
+  users.groups.plugdev = { };
 
   # Enable RLT-SDR support
   hardware.rtl-sdr.enable = true;
@@ -108,7 +139,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
-      #"plugdev"
+      "plugdev"
+      "dialout"
     ]; # Enable ‘sudo’ for the user.
     packages = [ ];
   };
@@ -123,6 +155,7 @@
     btop # system monitor TUI
     home-manager # used to configure the home directory
     git # used to manage git repos
+    usbutils # USB diagnostics
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
