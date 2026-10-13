@@ -13,7 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../programs/sway/sway.nix
+    ../../programs/sway.nix
     ../../programs/sysc-greet.nix
     ../../programs/ssh.nix
     ../../programs/tlp.nix
@@ -99,6 +99,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
+  boot.binfmt = {
+      emulatedSystems = [
+        "aarch64-linux"
+        "armv7l-linux"
+      ];
+      preferStaticEmulators = true;
+    };
+
+    # Enable Steam
+    programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Optional: open ports for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Optional: open ports for Source Dedicated Server
+    };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tom = {
     isNormalUser = true;
@@ -107,6 +122,10 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "plugdev"
+      "dialout"
+      "docker"
+      "disk"
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox # web browser
@@ -114,6 +133,8 @@
       nil # nix language server
     ];
   };
+
+  virtualisation.docker.enable = true;
 
   # programs.firefox.enable = true;
 
@@ -126,6 +147,9 @@
     btop # system monitor TUI
     home-manager # used to configure the home directory
     git # used to manage git repos
+    usbutils
+    unzip
+    p7zip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
