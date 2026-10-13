@@ -26,8 +26,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config.allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "broadcom-sta" ];
-
   hardware.enableAllFirmware = true;
 
   # Use the systemd-boot EFI boot loader.

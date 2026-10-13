@@ -35,6 +35,14 @@
           sysc-greet.nixosModules.default
         ];
       };
+
+      asusA16 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/asusA16/configuration.nix
+          sysc-greet.nixosModules.default
+        ];
+      };
     };
   };
 }
