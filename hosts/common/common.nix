@@ -99,6 +99,18 @@
     dedicatedServer.openFirewall = true; # Optional: open ports for Source Dedicated Server
   };
 
+  # Enable Open WebUI service
+  services.open-webui = {
+    enable = true;
+    port = 8080;
+    environment = {
+      OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
+      ANONYMIZED_TELEMETRY = "False";
+      DO_NOT_TRACK = "True";
+      SCARF_NO_ANALYTICS = "True";
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tom = {
     isNormalUser = true;
