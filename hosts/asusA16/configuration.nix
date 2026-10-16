@@ -79,6 +79,12 @@
     "flakes"
   ];
 
+  # used for .envrc files
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
