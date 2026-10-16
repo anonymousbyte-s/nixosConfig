@@ -35,14 +35,6 @@
 
   networking.hostName = "nixos"; # Define your hostname.
 
-  # Configure network connections interactively with nmcli or nmtui.
-  /*
-    networking.networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-    };
-  */
-
   networking.wireless.iwd.enable = true;
 
   # Enable the bluetooth hardware
