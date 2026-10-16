@@ -99,6 +99,16 @@
     dedicatedServer.openFirewall = true; # Optional: open ports for Source Dedicated Server
   };
 
+  # for running local AI
+  services.ollama = {
+    enable = true;
+    # Optional: choose "cuda" or "rocm" for GPU acceleration
+    #acceleration = "cuda";
+    acceleration = "rocm";
+    # Replace "10.3.0" with your GPU's GFX version (e.g., 11.0.0 for RX 7000 series)
+    rocmOverrideGfx = "11.0.0";
+  };
+
   # Enable Open WebUI service
   services.open-webui = {
     enable = true;
