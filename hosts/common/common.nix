@@ -102,12 +102,9 @@
   # for running local AI
   services.ollama = {
     enable = true;
-    # Optional: choose "cuda" or "rocm" for GPU acceleration
-    #acceleration = "cuda";
-    acceleration = "rocm";
-    # Replace "10.3.0" with your GPU's GFX version (e.g., 11.0.0 for RX 7000 series)
-    rocmOverrideGfx = "11.0.0";
+    package = pkgs.ollama-rocm;
   };
+
 
   # Enable Open WebUI service
   services.open-webui = {
@@ -144,6 +141,12 @@
   # enable docker
   virtualisation.docker.enable = true;
 
+  # allow for launching of app images
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -153,9 +156,12 @@
     btop # system monitor TUI
     home-manager # used to configure the home directory
     git # used to manage git repos
-    usbutils
-    unzip
-    p7zip
+    usbutils # lsusb
+    unzip # unzipping zip files
+    p7zip # unzipping 7z file
+    parted # for partitioning disks
+    python3 # for running python scripts
+    tailscale # tailscale package
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -171,6 +177,11 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Enable the Tailscale daemon
+  services.tailscale.enable = true;
+
+  # Allow Tailscale's default UDP port through the firewall
+  networking.firewall.allowedUDPPorts = [ 41641 ];
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
