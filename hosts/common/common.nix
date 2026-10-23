@@ -59,12 +59,6 @@
     "flakes"
   ];
 
-  # used for .envrc files
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -104,7 +98,6 @@
     enable = true;
     package = pkgs.ollama-rocm;
   };
-
 
   # Enable Open WebUI service
   services.open-webui = {
@@ -163,6 +156,9 @@
     python3 # for running python scripts
     tailscale # tailscale package
   ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ avrdude ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
