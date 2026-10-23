@@ -157,8 +157,15 @@
     tailscale # tailscale package
   ];
 
+  # allow for the running of precompiled libraries externel of the nix store (Fix for PlatformIO in VSCode)
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ avrdude ];
+
+  # Add PlatformIO udev rules
+  services.udev.packages = with pkgs; [
+    platformio-core.udev
+    openocd # optional, useful for debugging/flashing
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
