@@ -123,6 +123,7 @@
       "dialout"
       "docker"
       "disk"
+      "tty"
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox # web browser
