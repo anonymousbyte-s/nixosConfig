@@ -100,7 +100,7 @@
   };
 
   # Enable Open WebUI service
-  services.open-webui = {
+  /*services.open-webui = {
     enable = true;
     port = 8080;
     environment = {
@@ -109,7 +109,11 @@
       DO_NOT_TRACK = "True";
       SCARF_NO_ANALYTICS = "True";
     };
-  };
+    };*/
+
+  # support for VMs
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.tom = {
@@ -124,6 +128,7 @@
       "docker"
       "disk"
       "tty"
+      "libvirtd"
     ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox # web browser
