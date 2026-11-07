@@ -93,6 +93,28 @@
     dedicatedServer.openFirewall = true; # Optional: open ports for Source Dedicated Server
   };
 
+  systemd.services.evremap = {
+    serviceConfig = {
+      User = lib.mkForce "root";
+      DynamicUser = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+    };
+  };
+
+  services.evremap = {
+    enable = true;
+    settings = {
+      device_name = "Razer Razer Basilisk V3";
+      phys = "usb-0000:78:00.4-1/input0";
+      remap = [
+        {
+          input = [ "BTN_EXTRA" ];
+          output = [ "KEY_F" ];
+        }
+      ];
+    };
+  };
+
   # for running local AI
   services.ollama = {
     enable = true;

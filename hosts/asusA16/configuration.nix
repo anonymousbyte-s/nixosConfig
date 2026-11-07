@@ -24,6 +24,14 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # secondary 2 tb drive mount
+  fileSystems."/mnt/ssd2tb" = {
+    device = "/dev/disk/by-uuid/b43a1af9-5b19-4e26-99ff-e976667f0632";
+    fsType = "ext4"; # Replace with your filesystem type (e.g., ext4, btrfs, ntfs)
+    options = [ "defaults" "nofail" ];
+  };
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
