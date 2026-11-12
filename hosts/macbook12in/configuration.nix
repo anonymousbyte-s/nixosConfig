@@ -8,9 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./programs/sway.nix
+      ../../programs/sway.nix
       #./programs/tuigreet.nix
-      ./programs/sysc-greet.nix
+      ../../programs/sysc-greet.nix
+      ../../programs/tlp.nix
+      ../../programs/ssh.nix
     ];
 
   # disable applespi

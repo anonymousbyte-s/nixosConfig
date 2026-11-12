@@ -43,6 +43,13 @@
           sysc-greet.nixosModules.default
         ];
       };
+      macbook12in = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/macbook12in/configuration.nix        
+          sysc-greet.nixosModules.default
+        ];
+      };
     };
   };
 }
